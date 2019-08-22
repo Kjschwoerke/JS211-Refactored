@@ -16,14 +16,22 @@ function pigLatin(word) {
   
     if (firstVowelPosition > 0){
       return words.slice(firstVowelPosition) + words.slice(0, firstVowelPosition) + "ay"
-    }else{return words + "yay"}
-  
+    } else if (words!==" ") {return words + "yay"}
 }
+
+function pigify(sentence) {
+  let theSentence = sentence.trim()
+  let words = theSentence.split(" ")
+  return words.map(strings => pigLatin(strings)).join(" ")
+}
+
+//pigify("Something That is Changed to Pig Latin")
+
 
 
 function getPrompt() {
   rl.question('Word: ', (answer) => {
-    console.log( pigLatin(answer) );
+    console.log( pigify(answer).trim() );
     getPrompt();
   });
 }
