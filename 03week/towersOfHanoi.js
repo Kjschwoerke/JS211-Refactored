@@ -19,23 +19,111 @@ function printStacks() {
   console.log("c: " + stacks.c);
 }
 
-function movePiece() {
-  // Your code here
+
+function movePiece(startStack, endStack) {
+//move items from array a to either array b or array c
+  if (startStack==='a' && endStack==='b'){
+    let from = stacks['a'].pop();
+    stacks['b'].push(from);
+  }
+  else if (startStack==='a' && endStack==='c'){
+    let from = stacks['a'].pop();
+    stacks['c'].push(from);
+  }
+//move items from array b to either array a or array c
+  else if (startStack==='b' && endStack==='a'){
+  let from = stacks['b'].pop();
+  stacks['a'].push(from);
+  }
+  else if (startStack==='b' && endStack==='c'){
+    let from = stacks['b'].pop();
+    stacks['c'].push(from);
+  }
+//move items from array c to either array a or array b
+  else if (startStack==='c' && endStack==='a'){
+    let from = stacks['c'].pop();
+    stacks['a'].push(from);
+  }
+  else if (startStack==='c' && endStack==='b'){
+    let from = stacks['c'].pop();
+    stacks['b'].push(from);
+  }
+}
+
+function isLegal(startStack, endStack) {
+//check if move legal when startStack is 'a'
+  if (startStack === 'a' && endStack === 'b'){
+    for(let i = 0; i<stacks.b.length; i++) {
+      if(stacks.b[i]<stacks.b[i+1]){
+        console.log('Error - Invalid move')
+        let errorValue = stacks.b.pop()
+        stacks.a.push(errorValue)
+      }
+    }
+  }
+
+  if (startStack === 'a' && endStack === 'c'){
+    for(let i = 0; i<stacks.c.length; i++) {
+      if(stacks.c[i]<stacks.c[i+1]){
+        console.log('Error - Invalid move')
+        let errorValue = stacks.c.pop()
+        stacks.a.push(errorValue)
+      }
+    }
+  }
+//check if move legal when startStack is 'b'
+if (startStack === 'b' && endStack === 'a'){
+  for(let i = 0; i<stacks.a.length; i++) {
+    if(stacks.a[i]<stacks.a[i+1]){
+      console.log('Error - Invalid move')
+      let errorValue = stacks.a.pop()
+      stacks.b.push(errorValue)
+    }
+  }
+}
+
+if (startStack === 'b' && endStack === 'c'){
+  for(let i = 0; i<stacks.c.length; i++) {
+    if(stacks.c[i]<stacks.c[i+1]){
+      console.log('Error - Invalid move')
+      let errorValue = stacks.c.pop()
+      stacks.b.push(errorValue)
+    }
+  }
+}
+
+//check if move legal when startStack is 'c'
+if (startStack === 'c' && endStack === 'a'){
+  for(let i = 0; i<stacks.a.length; i++) {
+    if(stacks.a[i]<stacks.a[i+1]){
+      console.log('Error - Invalid move')
+      let errorValue = stacks.a.pop()
+      stacks.c.push(errorValue)
+    }
+  }
+}
+
+if (startStack === 'c' && endStack === 'b'){
+  for(let i = 0; i<stacks.b.length; i++) {
+    if(stacks.b[i]<stacks.b[i+1]){
+      console.log('Error - Invalid move')
+      let errorValue = stacks.b.pop()
+      stacks.c.push(errorValue)
+    }
+  }
+}
 
 }
 
-function isLegal() {
-  // Your code here
-
-}
-
-function checkForWin() {
+function checkForWin(startStack, endStack) {
   // Your code here
 
 }
 
 function towersOfHanoi(startStack, endStack) {
   // Your code here
+  
+  if (startStack==="" || endStack===""){console.log("Please Enter a value for the Start and End Stacks")} else {movePiece(startStack, endStack); isLegal(startStack, endStack); checkForWin(startStack, endStack)}
 
 }
 
