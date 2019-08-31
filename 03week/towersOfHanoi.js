@@ -10,7 +10,7 @@ const rl = readline.createInterface({
 let stacks = {
   a: [4, 3, 2, 1],
   b: [],
-  c: []
+  c: [4,3,2]
 };
 
 function printStacks() {
@@ -115,16 +115,17 @@ if (startStack === 'c' && endStack === 'b'){
 
 }
 
-function checkForWin(startStack, endStack) {
-  // Your code here
+function checkForWin() {
+     if (stacks.c[0]>stacks.c[1] && stacks.c[1]>stacks.c[2] && stacks.c[2]>stacks.c[3] && stacks.c.length === 4){
+       console.log("You win! Congrats!")
+     }
+   }
+ 
 
-}
+
 
 function towersOfHanoi(startStack, endStack) {
-  // Your code here
-  
-  if (startStack==="" || endStack===""){console.log("Please Enter a value for the Start and End Stacks")} else {movePiece(startStack, endStack); isLegal(startStack, endStack); checkForWin(startStack, endStack)}
-
+  if (startStack==="" || endStack===""){console.log("Please Enter a value for the Start and End Stacks")} else {movePiece(startStack, endStack); isLegal(startStack, endStack); checkForWin()}
 }
 
 function getPrompt() {
