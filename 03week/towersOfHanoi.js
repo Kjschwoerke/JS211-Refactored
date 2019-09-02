@@ -10,7 +10,7 @@ const rl = readline.createInterface({
 let stacks = {
   a: [4, 3, 2, 1],
   b: [],
-  c: [4,3,2]
+  c: []
 };
 
 function printStacks() {
@@ -58,8 +58,9 @@ function isLegal(startStack, endStack) {
         console.log('Error - Invalid move')
         let errorValue = stacks.b.pop()
         stacks.a.push(errorValue)
-      }
-    }
+        return true
+      } else {return false}
+    } return true
   }
 
   if (startStack === 'a' && endStack === 'c'){
@@ -68,8 +69,9 @@ function isLegal(startStack, endStack) {
         console.log('Error - Invalid move')
         let errorValue = stacks.c.pop()
         stacks.a.push(errorValue)
-      }
-    }
+        return true
+      } else {return false}
+    } return true
   }
 //check if move legal when startStack is 'b'
 if (startStack === 'b' && endStack === 'a'){
@@ -78,8 +80,9 @@ if (startStack === 'b' && endStack === 'a'){
       console.log('Error - Invalid move')
       let errorValue = stacks.a.pop()
       stacks.b.push(errorValue)
-    }
-  }
+      return true
+    } else {return false}
+  } return true
 }
 
 if (startStack === 'b' && endStack === 'c'){
@@ -88,8 +91,9 @@ if (startStack === 'b' && endStack === 'c'){
       console.log('Error - Invalid move')
       let errorValue = stacks.c.pop()
       stacks.b.push(errorValue)
-    }
-  }
+      return true
+    } else {return false}
+  } return true
 }
 
 //check if move legal when startStack is 'c'
@@ -99,8 +103,9 @@ if (startStack === 'c' && endStack === 'a'){
       console.log('Error - Invalid move')
       let errorValue = stacks.a.pop()
       stacks.c.push(errorValue)
-    }
-  }
+      return true
+    } else {return false}
+  } return true
 }
 
 if (startStack === 'c' && endStack === 'b'){
@@ -109,16 +114,23 @@ if (startStack === 'c' && endStack === 'b'){
       console.log('Error - Invalid move')
       let errorValue = stacks.b.pop()
       stacks.c.push(errorValue)
-    }
-  }
+      return true
+    } else {return false}
+  } return true
 }
 
 }
 
 function checkForWin() {
      if (stacks.c[0]>stacks.c[1] && stacks.c[1]>stacks.c[2] && stacks.c[2]>stacks.c[3] && stacks.c.length === 4){
-       console.log("You win! Congrats!")
+       console.log("You win! Congrats!");
+       return true
      }
+     if (stacks.b[0]>stacks.b[1] && stacks.b[1]>stacks.b[2] && stacks.b[2]>stacks.b[3] && stacks.b.length === 4){
+      console.log("You win! Congrats!");
+      return true
+    }
+    return false
    }
  
 
