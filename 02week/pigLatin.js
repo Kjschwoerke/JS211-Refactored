@@ -9,15 +9,29 @@ const rl = readline.createInterface({
 
 
 function pigLatin(word) {
-
   // Your code here
-
+    let words = word.toLowerCase().trim()
+    let firstVowel = words.match(/[aeiou]/);
+    let firstVowelPosition = words.indexOf(firstVowel)
+  
+    if (firstVowelPosition > 0){
+      return words.slice(firstVowelPosition) + words.slice(0, firstVowelPosition) + "ay"
+    } else if (words!==" ") {return words + "yay"}
 }
+
+function pigify(sentence) {
+  let theSentence = sentence.trim()
+  let words = theSentence.split(" ")
+  return words.map(strings => pigLatin(strings)).join(" ")
+}
+
+//pigify("Something That is Changed to Pig Latin")
+
 
 
 function getPrompt() {
-  rl.question('word ', (answer) => {
-    console.log( pigLatin(answer) );
+  rl.question('Word: ', (answer) => {
+    console.log( pigify(answer).trim() );
     getPrompt();
   });
 }
