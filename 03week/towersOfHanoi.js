@@ -124,17 +124,27 @@ if (startStack === 'c' && endStack === 'b'){
 function checkForWin() {
      if (stacks.c[0]>stacks.c[1] && stacks.c[1]>stacks.c[2] && stacks.c[2]>stacks.c[3] && stacks.c.length === 4){
        console.log("You win! Congrats!");
+       stacks = {
+        a: [4, 3, 2, 1],
+        b: [],
+        c: []
+      };
+       
        return true
      }
      if (stacks.b[0]>stacks.b[1] && stacks.b[1]>stacks.b[2] && stacks.b[2]>stacks.b[3] && stacks.b.length === 4){
       console.log("You win! Congrats!");
+      stacks = {
+        a: [4, 3, 2, 1],
+        b: [],
+        c: []
+      };
       return true
+      
     }
     return false
    }
  
-
-
 
 function towersOfHanoi(startStack, endStack) {
   if (startStack==="" || endStack===""){console.log("Please Enter a value for the Start and End Stacks")} else {movePiece(startStack, endStack); isLegal(startStack, endStack); checkForWin()}
