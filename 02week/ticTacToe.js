@@ -44,6 +44,7 @@ function horizontalWin() {
     if (horizontalWinX()===true) {return true}
 else if (horizontalWinO()===true){return false}
 }
+
 //Vertical Win Conditions
 function verticalWin() {
   function verticalWinX() {
@@ -63,6 +64,7 @@ function verticalWinO() {
     if (verticalWinX()===true) {return true}
 else if (verticalWinO()===true){return false}
 }
+
 //Diagonal Win Conditions
 function diagonalWin(){
 
