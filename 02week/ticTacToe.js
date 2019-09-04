@@ -23,20 +23,9 @@ function printBoard() {
   console.log('  ---------');
   console.log('2 ' + board[2].join(' | '));
 }
-//Set Winning Conditions for the Game
-let one = board [0][0]
-let two = board [0][1]
-let three = board [0][2]
-let four = board [1][0]
-let five = board [1][1]
-let six = board [1][2]
-let seven = board [2][0]
-let eight = board [2][1]
-let nine = board [2][2]
 
 //Functions to determine win conditions for player 'X' and 'O'
-
-//Victory Conditions for Player 'X'
+//Horizontal Win Conditions
 function horizontalWin() {
   function horizontalWinX() {
     if (board [0][0] === 'X' && board [0][1] === 'X' && board [0][2] === 'X' || board [1][0] === 'X' && board [1][1] === 'X' && board [1][2] === 'X' || board [2][0] === 'X' && board [2][1] === 'X' && board [2][2] === 'X') 
@@ -47,107 +36,63 @@ function horizontalWin() {
     if (board [0][0] === 'O' && board [0][1] === 'O' && board [0][2] === 'O' || board [1][0] === 'O' && board [1][1] === 'O' && board [1][2] === 'O' || board [2][0] === 'O' && board [2][1] === 'O' && board [2][2] === 'O') 
     {return true} else {return false}
   }
-if (playerTurn === 'X'){
-  horizontalWinX()}else{
-  horizontalWinO()}
 
-if (horizontalWinX()===true) {return true}
+   
+  horizontalWinX()
+  horizontalWinO()
+
+    if (horizontalWinX()===true) {return true}
 else if (horizontalWinO()===true){return false}
 }
-
-
+//Vertical Win Conditions
 function verticalWin() {
   function verticalWinX() {
-   if (board [0][0] === 'X' && board [1][0] === 'X' && board [2][0] === 'X' || board [0][1] === 'X' && board [1][1] === 'X' && board [2][1] === 'X' || board [0][2] === 'X' && board [1][2] === 'X' && board [2][2] === 'X')
+    if (board [0][0] === 'X' && board [1][0] === 'X' && board [2][0] === 'X' || board [0][1] === 'X' && board [1][1] === 'X' && board [2][1] === 'X' || board [0][2] === 'X' && board [1][2] === 'X' && board [2][2] === 'X')
   {return true} else {return false}
 }
 
 function verticalWinO() {
-  if (board [0][0] === 'O' && board [1][0] === 'O' && board [2][0] === 'O' || board [0][1] === 'O' && board [1][1] === 'O' && board [2][1] === 'O' || board [0][2] === 'O' && board [1][2] === 'O' && board [2][2] === 'O')
+    if (board [0][0] === 'O' && board [1][0] === 'O' && board [2][0] === 'O' || board [0][1] === 'O' && board [1][1] === 'O' && board [2][1] === 'O' || board [0][2] === 'O' && board [1][2] === 'O' && board [2][2] === 'O')
   {return true} else {return false}
 }
 
-if (playerTurn === 'X'){
-  verticalWinX()}else{
-  verticalWinO()}
+    
+  verticalWinX()
+  verticalWinO()
 
-if (verticalWinX()===true) {return true}
+    if (verticalWinX()===true) {return true}
 else if (verticalWinO()===true){return false}
 }
-
-
+//Diagonal Win Conditions
 function diagonalWin(){
 
-function diagonalWinX() {
- if (board [0][0] === 'X' && board [1][1] === 'X' && board [2][2] === 'X' || board [0][2] === 'X' && board [1][1] === 'X' && board [2][0] === 'X')
-  {return true} else {return false}
+  function diagonalWinX() {
+    if (board [0][0] === 'X' && board [1][1] === 'X' && board [2][2] === 'X' || board [0][2] === 'X' && board [1][1] === 'X' && board [2][0] === 'X')
+{return true} else {return false}
 }
-function diagonalWinO() {
-  if (board [0][0] === 'O' && board [1][1] === 'O' && board [2][2] === 'O' || board [0][2] === 'O' && board [1][1] === 'O' && board [2][0] === 'O')
-   {return true} else {return false}
- }
- if (playerTurn === 'X'){
-  diagonalWinX()}else{
-  diagonalWinO()}
 
-if (diagonalWinX()===true) {return true}
+  function diagonalWinO() {
+    if (board [0][0] === 'O' && board [1][1] === 'O' && board [2][2] === 'O' || board [0][2] === 'O' && board [1][1] === 'O' && board [2][0] === 'O')
+{return true} else {return false}
+ }
+    
+diagonalWinX()
+diagonalWinO()
+
+    if (diagonalWinX()===true) {return true}
 else if (diagonalWinO()===true){return false}
 }
-//Victory Conditions for Player 'O'
-
-
-
-
 
 //Call functions for win conditions
 horizontalWin()
-//horizontalWinX()
 verticalWin()
 diagonalWin()
-//horizontalWinO()
-//verticalWinO()
-//diagonalWinO()
-//define variables to be used in the function to determineWinner() for determining the winner
-
 
 function checkForWin(){
   if (horizontalWin()===true||verticalWin()===true||diagonalWin()===true){return true}else if (horizontalWin()===false||verticalWin()===false||diagonalWin()===false){return false}
 }
-
 checkForWin()
-/*//horizontal win conditions
 
-
-function horizontalWin() {
-  
-  
-}
-
-//vertical win conditions
-
-
-
-function verticalWin() {
-  
-  
-}
-
-//diagonal win conditions
-
-
-
-function diagonalWin() {
-  
-}
-
-//Check to see if winning conditions have occurred and console.log the winner.
-
-
-function checkForWin() {
-   
-}*/
-
-  
 
 // enter player mark on the board in the chosen column and change player turn.
 function ticTacToe(row, column) {
