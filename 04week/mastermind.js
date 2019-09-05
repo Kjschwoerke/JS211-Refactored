@@ -34,7 +34,16 @@ function generateHint() {
 
 function mastermind(guess) {
   solution = 'abcd'; // Comment this out to generate a random solution
-  // your code here
+  let answer = solution.split('')
+  let userInput = guess.split('')
+
+  for (let i=0; i < answer.length; i++){
+      if (answer[i]===userInput[i]){console.log('Are equal at: '+ [i+1])} else {console.log('Are not equal at: ' + [i+1])}
+  }
+      if (answer[0]===userInput[0] && answer[1]===userInput[1] && answer[2]===userInput[2] && answer[3]===userInput[3]){console.log("Congrats! You have broken the code!")} else {console.log('The code remains unbroken.')
+  }
+  console.log(answer)
+  console.log(userInput)
 }
 
 
