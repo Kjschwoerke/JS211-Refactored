@@ -41,27 +41,35 @@ function generateHint(guess) {
     } 
   }
   
-console.log(answer)
-console.log(userInput)
-  
-    for (let i=0; i<4; i++) {
-    if (userInput[i]!==answer[i] && userInput[i]===answer[i-3] || userInput[i]===answer[i-2] || userInput[i]===answer[i-1] || userInput[i]===answer[i+1] || userInput[i]===answer[i+2] || userInput[i]===answer[i+3]){
-      onBoard = onBoard + 1
-    } 
+  for (let i=0; i<4; i++) {
+    let targetIndex = answer.indexOf(userInput[i])
+    if (targetIndex > -1) {
+      onBoard = onBoard +1
+      answer[targetIndex] = null
+    }
   }
 
-console.log(correctGuess)
-console.log(onBoard)
+  let correctSpot = correctGuess.toString()
+  let onTheBoard = onBoard.toString()
+  let hint = `${correctSpot}-${onTheBoard}`
+  
+  
+  board.push(hint)
 
+return hint
 }
 
 function mastermind(guess) {
   solution = 'abcd'; // Comment this out to generate a random solution
-  let answer = solution.split('')
-  let userInput = guess.split('')
 
-      if (answer[0]===userInput[0] && answer[1]===userInput[1] && answer[2]===userInput[2] && answer[3]===userInput[3]){console.log("Congrats! You have broken the code!")} else {console.log('The code remains unbroken.')
-  } return 'You guessed it!'
+      if (guess === solution){
+        console.log("You guessed it")
+        let winstring = 'You guessed it!'
+        return winstring
+      }
+   
+   printBoard()
+   generateHint(guess)
 }
 
 
