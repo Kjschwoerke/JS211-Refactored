@@ -28,8 +28,31 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function generateHint() {
-  // your code here
+function generateHint(guess) {
+  let answer = solution.split('')
+  let userInput = guess.split('')
+  let correctGuess = 0
+  let onBoard = 0
+
+  for (let i=0; i<4; i++) {
+    if (answer[i]===userInput[i]) {
+      correctGuess = correctGuess+1
+      answer[i] = null
+    } 
+  }
+  
+console.log(answer)
+console.log(userInput)
+  
+    for (let i=0; i<4; i++) {
+    if (userInput[i]!==answer[i] && userInput[i]===answer[i-3] || userInput[i]===answer[i-2] || userInput[i]===answer[i-1] || userInput[i]===answer[i+1] || userInput[i]===answer[i+2] || userInput[i]===answer[i+3]){
+      onBoard = onBoard + 1
+    } 
+  }
+
+console.log(correctGuess)
+console.log(onBoard)
+
 }
 
 function mastermind(guess) {
@@ -37,19 +60,16 @@ function mastermind(guess) {
   let answer = solution.split('')
   let userInput = guess.split('')
 
-  for (let i=0; i < answer.length; i++){
-      if (answer[i]===userInput[i]){console.log('Are equal at: '+ [i+1])} else {console.log('Are not equal at: ' + [i+1])}
-  }
       if (answer[0]===userInput[0] && answer[1]===userInput[1] && answer[2]===userInput[2] && answer[3]===userInput[3]){console.log("Congrats! You have broken the code!")} else {console.log('The code remains unbroken.')
-  }
-  console.log(answer)
-  console.log(userInput)
+  } return 'You guessed it!'
 }
+
 
 
 function getPrompt() {
   rl.question('guess: ', (guess) => {
     mastermind(guess);
+    generateHint(guess);
     printBoard();
     getPrompt();
   });
