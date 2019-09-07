@@ -6,7 +6,7 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
-
+let number = 0
 let board = [];
 let solution = '';
 let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
@@ -61,9 +61,10 @@ return hint
 
 function mastermind(guess) {
   solution = 'abcd'; // Comment this out to generate a random solution
-
+ 
       if (guess === solution){
         console.log("You guessed it")
+        
         let winstring = 'You guessed it!'
         return winstring
       }
@@ -72,12 +73,30 @@ function mastermind(guess) {
    generateHint(guess)
 }
 
+ function turnCounter(guess){
+  let userInput = guess
+  if (number===10) {
+    console.log('The solution was ' + solution)
+    let turnsOut = 'You ran out of turns!'
+    number = 0
+    board = []    
+    return turnsOut} else if (number<10) {
+      console.log(
+      'Guess again.')
+      number++
+    }
+    
+      console.log('Turn Number: '+ number)
+      board.push(userInput)
+  }
+
 
 
 function getPrompt() {
   rl.question('guess: ', (guess) => {
     mastermind(guess);
     generateHint(guess);
+    turnCounter(guess);
     printBoard();
     getPrompt();
   });
