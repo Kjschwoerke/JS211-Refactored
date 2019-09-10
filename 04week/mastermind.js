@@ -73,11 +73,13 @@ function mastermind(guess) {
    generateHint(guess)
 }
 
+//create a turn counter
  function turnCounter(guess){
   let userInput = guess
   if (number===10) {
     console.log('The solution was ' + solution)
     let turnsOut = 'You ran out of turns!'
+//reset board and turn counter
     number = 0
     board = []    
     return turnsOut} else if (number<10) {
