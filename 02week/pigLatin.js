@@ -1,3 +1,4 @@
+
 'use strict';
 
 const assert = require('assert');
@@ -63,3 +64,4 @@ if (typeof describe === 'function') {
   getPrompt();
 
 }
+
