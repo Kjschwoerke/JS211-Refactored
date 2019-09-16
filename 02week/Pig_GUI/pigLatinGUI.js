@@ -1,12 +1,11 @@
-
 'use strict';
 
-const assert = require('assert');
+/*const assert = require('assert');
 const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
-});
+});*/
 
 
 function pigLatin(word) {
@@ -26,20 +25,21 @@ function pigify(sentence) {
   return words.map(strings => pigLatin(strings)).join(" ")
 }
 
+document.getElementById('translation').innerHTML = pigify(sentence)
+
+pigify(something here to be pigified)
 //pigify("Something That is Changed to Pig Latin")
 
-
-
-function getPrompt() {
+/*function getPrompt() {
   rl.question('Word: ', (answer) => {
     console.log( pigify(answer).trim() );
     getPrompt();
   });
-}
+}*/
 
 // Tests
 
-if (typeof describe === 'function') {
+/*if (typeof describe === 'function') {
 
   describe('#pigLatin()', () => {
     it('should translate a simple word', () => {
@@ -64,3 +64,4 @@ if (typeof describe === 'function') {
   getPrompt();
 
 }
+*/
