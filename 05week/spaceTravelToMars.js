@@ -8,10 +8,77 @@ let jobTypes = {
   commander: 'Main Ship',
   programmer: 'Any Ship!'
 };
+//-------------------------------------------------------------------------
+// Create object constructor to use as crew template
+//-------------------------------------------------------------------------
 
-// Your code here
+class CrewMember{
+  constructor(name, job, specialSkill, ship) {
+  this.name = name;
+  this.job = job;
+  this.specialSkill = specialSkill;
+  this.ship = ship;
+  }
+  enterShip(shipName){
+    this.ship = shipName;
+    shipName.crew.push(this)
+  }
+}
 
+//-------------------------------------------------------------------------
+//create object constructor to use for ship template
+//-------------------------------------------------------------------------
+
+class Ship{
+  constructor(name, type, ability){
+  this.name = name;
+  this.type = type;
+  this.ability = ability;
+  this.crew = [];
+  }
+  missionStatement(shipName){
+    this.name = shipName
+      if(this.crew.length === 0){
+        return "Can't perform a mission yet."
+      }else {
+        return this.ability
+      }
+    
+  }
+  
+}
+
+//-------------------------------------------------------------------------
+//Define all crew members for the mission to Mars
+//-------------------------------------------------------------------------
+
+let crewMember1 = new CrewMember('Rick Martinez', 'pilot', 'chemistry', null);
+let crewMember2 = new CrewMember('Commander Lewis', 'commander', 'geology', null);
+let crewMember3 = new CrewMember('Janet Schwartz', 'programmer', 'technical support', null);
+let crewMember4 = new CrewMember('Lucy Chang', 'mechanic', 'repair ship', null);
+console.log('Crew members available for the mission to Mars:')
+console.log(crewMember1)
+console.log(crewMember2)
+console.log(crewMember3)
+console.log(crewMember4)
+
+//-------------------------------------------------------------------------
+//Define all ships for the mission to Mars
+//-------------------------------------------------------------------------
+
+let mav = new Ship('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
+let hermes = new Ship('Hermes', 'Main Ship', 'Interplanetary Space Travel');
+console.log('____________________________________________________________')
+console.log('Ships available for the mission to Mars:')
+console.log(mav)
+console.log(hermes)
+
+
+
+//-------------------------------------------------------------------------
 //tests
+//-------------------------------------------------------------------------
+
 if (typeof describe === 'function'){
   describe('CrewMember', function(){
     it('should have a name, a job, a specialSkill and ship upon instantiation', function(){
