@@ -7,14 +7,25 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-
-function Checker() {
-  // Your code here
+// Your code here
+class Checker {
+  constructor(color) {
+    if (color === 'white') {
+      this.symbol = String.fromCharCode(0x125CB);
+    }else if(color === 'black') {
+      this.symbol = String.fromCharCode(0x125CF);
+    }
+  }
 }
+
+let white = new Checker('white')
+let black = new Checker('black')
+
 
 class Board {
   constructor() {
     this.grid = []
+    this.checkers = []
   }
   // method that creates an 8x8 array, filled with null values
   createGrid() {
@@ -50,10 +61,46 @@ class Board {
       string += "\n";
     }
     console.log(string);
+
   }
+  
+  initializeGrid() {
+
+    //White Pieces Initial Start
+    for (let rowWhite = 0; rowWhite<3; rowWhite++){
+      for(let colWhite = 0; colWhite<8; colWhite++){
+        if (rowWhite%2===0&&colWhite%2===1){
+          this.grid[rowWhite][colWhite] = white
+        }else if (rowWhite%2===1&&colWhite%2===0){
+          this.grid[rowWhite][colWhite] = white
+        }
+      }
+    }
+  
+
+    //Black Pieces Initial Start
+    for (let rowBlack = 5; rowBlack<8; rowBlack++){
+      for(let colBlack = 0; colBlack<8; colBlack++){
+        if (rowBlack%2===0&&colBlack%2===1){
+          this.grid[rowBlack][colBlack] = black
+        }else if (rowBlack%2===1&&colBlack%2===0){
+          this.grid[rowBlack][colBlack] = black
+        }
+      }
+    }
+  }
+  
 
   // Your code here
+    createCheckers(){
+    for (let i=0; i<11; i++){
+      this.checkers.push(white)
+      this.checkers.push(black)
+      }
+    }
+    
 }
+
 
 class Game {
   constructor() {
@@ -61,6 +108,16 @@ class Game {
   }
   start() {
     this.board.createGrid();
+    this.board.createCheckers();
+    this.board.initializeGrid();
+  }
+  moveChecker(whichPiece, toWhere){
+    let start = whichPiece
+    let end = toWhere
+
+    console.log('input is: ' + start)
+    console.log('stop location is: '+ end)
+
   }
 }
 
@@ -77,8 +134,10 @@ function getPrompt() {
 const game = new Game();
 game.start();
 
-
+//________________________________________________________________________________________________________________________________
 // Tests
+//________________________________________________________________________________________________________________________________
+
 if (typeof describe === 'function') {
   describe('Game', () => {
     it('should have a board', () => {

@@ -87,8 +87,9 @@ function mastermind(guess) {
       'Guess again.')
       number++
     }
-    
+      console.log('_______________________________________')
       console.log('Turn Number: '+ number)
+      console.log('_______________________________________')
       board.push(userInput)
   }
 
