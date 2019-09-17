@@ -93,7 +93,7 @@ class Board {
 
   // Your code here
     createCheckers(){
-    for (let i=0; i<11; i++){
+    for (let i=0; i<12; i++){
       this.checkers.push(white)
       this.checkers.push(black)
       }
