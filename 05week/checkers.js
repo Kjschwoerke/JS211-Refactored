@@ -20,6 +20,18 @@ class Checker {
 
 let white = new Checker('white')
 let black = new Checker('black')
+let playerTurn = "whiteTurn"
+
+
+function playerTurnTrack(){
+  if (playerTurn === "whiteTurn"){
+    console.log("It is the White Player's Turn")
+    playerTurn = "blackTurn"
+  }else if(playerTurn === "blackTurn"){ 
+    console.log("It is the Black Player's Turn")
+    playerTurn = "whiteTurn"
+  }
+}
 
 
 class Board {
@@ -124,14 +136,30 @@ class Game {
     this.board.grid[startRow][startCol] = null
   }
   //Check for valid move
+  checkValid(whichPiece, toWhere){
+    let start = whichPiece.split('')
+    let end = toWhere.split('')
+    let startRow=start[0]
+    let startCol=start[1]
+    let endRow=end[0]
+    let endCol=end[1]
+
+    if (this.board.grid[endRow] !== this.board.grid[startRow + 1] ){
+      console.log('invalid move detected');
+      this.board.grid[startRow][startCol] = this.board.grid[endRow][endCol]
+      this.board.grid[endRow][endCol] = null
+    }
+  }
 
 }
 
 function getPrompt() {
   game.board.viewGrid();
+  playerTurnTrack()
   rl.question('which piece?: ', (whichPiece) => {
     rl.question('to where?: ', (toWhere) => {
       game.moveChecker(whichPiece, toWhere);
+      game.checkValid(whichPiece, toWhere)
       getPrompt();
     });
   });
