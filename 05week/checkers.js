@@ -111,14 +111,20 @@ class Game {
     this.board.createCheckers();
     this.board.initializeGrid();
   }
+  //Move Checker Pieces around the board using coordinates.
   moveChecker(whichPiece, toWhere){
-    let start = whichPiece
-    let end = toWhere
-
-    console.log('input is: ' + start)
-    console.log('stop location is: '+ end)
-
+    let start = whichPiece.split('')
+    let end = toWhere.split('')
+    let startRow=start[0]
+    let startCol=start[1]
+    let endRow=end[0]
+    let endCol=end[1]
+    
+    this.board.grid[endRow][endCol] = this.board.grid[startRow][startCol]
+    this.board.grid[startRow][startCol] = null
   }
+  //Check for valid move
+
 }
 
 function getPrompt() {
