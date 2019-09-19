@@ -21,14 +21,21 @@ class Checker {
 //Created Global Variables Here:
 let white = new Checker('white')
 let black = new Checker('black')
-let playerTurn = "whiteTurn"
+let playerTurn = "blackTurn"
 
 
 class Board {
   constructor() {
     this.grid = []
     this.checkers = []
+    
   }
+
+
+ //selectChecker(row, column){
+   //return this.grid[row][column].checkers
+//}
+
   // method that creates an 8x8 array, filled with null values
   createGrid() {
     // loop to create the 8 rows
@@ -97,6 +104,7 @@ class Board {
       this.checkers.push(white)
       this.checkers.push(black)
       }
+      console.log (this.checkers)
     }
 }
 
@@ -117,23 +125,59 @@ class Game {
    let addEleven = parseInt(whichPiece) + 11
    let minusNine = parseInt(whichPiece) - 9
    let minusEleven = parseInt(whichPiece) - 11
+   let addEighteen = parseInt(whichPiece) + 18
+   let addTwentytwo = parseInt(whichPiece) + 22
+   let minusEighteen = parseInt(whichPiece) - 18
+   let minusTwentytwo = parseInt(whichPiece) - 22
    let start = whichPiece.split('')
    let end = toWhere.split('')
    let startRow=start[0]
    let startCol=start[1]
    let endRow=end[0]
    let endCol=end[1]
+   let addNineStart = addNine.toString().split('')
+   let addElevenStart = addEleven.toString().split('')
+   let minusNineStart = minusNine.toString().split('')
+   let minusElevenStart = minusEleven.toString().split('')
+   let jumpAddNineRow = addNineStart[0]
+   let jumpAddNineColumn = addNineStart[1]
+   let jumpAddElevenRow = addElevenStart[0]
+   let jumpAddElevenColumn = addElevenStart[1]
+   let jumpMinusNineRow = minusNineStart[0]
+   let jumpMinusNineColumn = minusNineStart[1]
+   let jumpMinusElevenRow = minusElevenStart[0]
+   let jumpMinusElevenColumn = minusElevenStart[1]
 
-    if (playerTurn === "blackTurn" && addNine == toWhere || addEleven == toWhere) {
+
+    if (this.board.grid[startRow][startCol] = white && addNine == toWhere || addEleven == toWhere && this.board.grid[endRow][endCol] === null) {
       console.log('success')
-      this.board.grid[endRow][endCol] = this.board.grid[startRow][startCol]
+      this.board.grid[endRow][endCol] = white
       this.board.grid[startRow][startCol] = null
-    }
-    else if(playerTurn === "whiteTurn" && minusNine == toWhere || minusEleven == toWhere) {
+    }else if(this.board.grid[startRow][startCol] = white && addTwentytwo == toWhere && this.board.grid[jumpAddElevenRow][jumpAddElevenColumn] == black){
+      this.board.grid[endRow][endCol] = white
+      this.board.grid[jumpAddElevenRow][jumpAddElevenColumn] = null
+      this.board.checkers.pop()
+      this.board.grid[startRow][startCol] = null
+    }else if(this.board.grid[startRow][startCol] = white && addEighteen== toWhere && this.board.grid[jumpAddNineRow][jumpAddNineColumn] == black){
+      this.board.grid[endRow][endCol] = rowWhite
+      this.board.grid[jumpAddNineRow][jumpAddNineColumn] = null
+      this.board.checkers.pop()
+      this.board.grid[startRow][startCol] = null
+    }else if(this.board.grid[startRow][startCol] = black && minusNine == toWhere || minusEleven == toWhere && this.board.grid[endRow][endCol] === null) {
       console.log('success') 
-      this.board.grid[endRow][endCol] = this.board.grid[startRow][startCol]
-      this.board.grid[startRow][startCol] = null}
-    else{
+      this.board.grid[endRow][endCol] = black
+      this.board.grid[startRow][startCol] = null
+    }else if(this.board.grid[startRow][startCol] = black && minusTwentytwo == toWhere && this.board.grid[jumpMinusElevenRow][jumpMinusElevenColumn] == white){
+      this.board.grid[endRow][endCol] = black
+      this.board.grid[jumpMinusElevenRow][jumpMinusElevenColumn] = null
+      this.board.checkers.pop()
+      this.board.grid[startRow][startCol] = null
+    }else if(this.board.grid[startRow][startCol] = black && minusEighteen== toWhere && this.board.grid[jumpMinusNineRow][jumpMinusNineColumn] == white){
+      this.board.grid[endRow][endCol] = black
+      this.board.grid[jumpMinusNineRow][jumpMinusNineColumn] = null
+      this.board.checkers.pop()
+      this.board.grid[startRow][startCol] = null
+    }else{
       console.log ('invalid move detected')
     }
   }
@@ -148,18 +192,16 @@ class Game {
       playerTurn = "whiteTurn"
     }
   }
-
-  
-
-// 9 and 11
 }
+
 
 function getPrompt() {
   game.board.viewGrid();
-  game.playerTurnTrack()
   rl.question('which piece?: ', (whichPiece) => {
     rl.question('to where?: ', (toWhere) => {
       game.moveChecker(whichPiece, toWhere);
+      game.playerTurnTrack()
+      console.log(game.board.checkers.length)
       getPrompt();
     });
   });
