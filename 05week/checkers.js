@@ -109,22 +109,10 @@ class Game {
     this.board.createCheckers();
     this.board.initializeGrid();
   }
-  //Move Checker Pieces around the board using coordinates.
-  moveChecker(whichPiece, toWhere){
-    let start = whichPiece.split('')
-    let end = toWhere.split('')
-    let startRow=start[0]
-    let startCol=start[1]
-    let endRow=end[0]
-    let endCol=end[1]
-    
-    this.board.grid[endRow][endCol] = this.board.grid[startRow][startCol]
-    this.board.grid[startRow][startCol] = null
-  }
 
-  //Check for valid move
+  //Move Checker and check for valid move
 
-  checkIfValid(whichPiece, toWhere) {
+  moveChecker(whichPiece, toWhere) {
    let addNine = parseInt(whichPiece) + 9
    let addEleven = parseInt(whichPiece) + 11
    let minusNine = parseInt(whichPiece) - 9
@@ -138,12 +126,15 @@ class Game {
 
     if (playerTurn === "blackTurn" && addNine == toWhere || addEleven == toWhere) {
       console.log('success')
+      this.board.grid[endRow][endCol] = this.board.grid[startRow][startCol]
+      this.board.grid[startRow][startCol] = null
     }
-    else if(playerTurn === "whiteTurn" && minusNine == toWhere || minusEleven == toWhere) {console.log('success')}
+    else if(playerTurn === "whiteTurn" && minusNine == toWhere || minusEleven == toWhere) {
+      console.log('success') 
+      this.board.grid[endRow][endCol] = this.board.grid[startRow][startCol]
+      this.board.grid[startRow][startCol] = null}
     else{
       console.log ('invalid move detected')
-      this.board.grid[startRow][startCol] = this.board.grid[endRow][endCol]
-      this.board.grid[endRow][endCol] = null
     }
   }
 
@@ -169,7 +160,6 @@ function getPrompt() {
   rl.question('which piece?: ', (whichPiece) => {
     rl.question('to where?: ', (toWhere) => {
       game.moveChecker(whichPiece, toWhere);
-      game.checkIfValid(whichPiece, toWhere)
       getPrompt();
     });
   });
