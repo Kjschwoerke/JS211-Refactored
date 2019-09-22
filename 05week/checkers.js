@@ -218,8 +218,12 @@ class Game {
       this.board.grid[startRow][startCol] = null
       game.playerTurnTrack()
     }
+    //Make a Pice a KingPiece
+    
+    if (this.board.grid[startRow][startCol] === white && toWhere == 70 || toWhere == 71 || toWhere == 72 || toWhere == 73 || toWhere == 74 || toWhere == 75 || toWhere == 76 ||toWhere == 77) {this.board.grid[endRow][endCol] = whiteKing}
+    else if (this.board.grid[startRow][startCol] === black && toWhere == 70 || toWhere == 71 || toWhere == 72 || toWhere == 73 || toWhere == 74 || toWhere == 75 || toWhere == 76 ||toWhere == 77) {this.board.grid[endRow][endCol] = blackKing}
 
-    //King Movement ('White')
+    /*//King Movement ('White')
     if (playerTurn === 'White' && this.board.grid[startRow][startCol] === 'WK' && addNine == toWhere || addEleven == toWhere && this.board.grid[endRow][endCol] === null) {
       console.log('KW1')
      
@@ -319,10 +323,9 @@ class Game {
       this.board.checkers.pop()
       this.board.grid[startRow][startCol] = null
       game.playerTurnTrack()
-    }
+    }*/
 
-    if (this.board.grid[startRow][startCol] === white && toWhere == 70 || toWhere == 71 || toWhere == 72 || toWhere == 73 || toWhere == 74 || toWhere == 75 || toWhere == 76 ||toWhere == 77) {this.board.grid[endRow][endCol] = whiteKing}
-    else if (this.board.grid[startRow][startCol] === black && toWhere == 70 || toWhere == 71 || toWhere == 72 || toWhere == 73 || toWhere == 74 || toWhere == 75 || toWhere == 76 ||toWhere == 77) {this.board.grid[endRow][endCol] = blackKing}
+    
 }
 
 
