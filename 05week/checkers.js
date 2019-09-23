@@ -167,7 +167,7 @@ class Game {
 
     //Normal Movement and Jumps
     //White Piece Moves
-    if (playerTurn === 'White' && this.board.grid[startRow][startCol] === white && this.board.grid[startRow][startCol] !== black && this.board.grid[startRow][startCol] !== whiteKing && this.board.grid[startRow][startCol] !== blackKing && addNine == toWhere || addEleven == toWhere && this.board.grid[endRow][endCol] === null) {
+    if (playerTurn === 'White' && this.board.grid[startRow][startCol] === white && this.board.grid[startRow][startCol] !== black && this.board.grid[startRow][startCol] !== whiteKing && this.board.grid[startRow][startCol] !== blackKing &&(addNine == toWhere || addEleven == toWhere)&& this.board.grid[endRow][endCol] === null) {
       console.log('W1')
       console.log(this.board.grid[startRow][startCol])
       this.board.grid[endRow][endCol] = white
@@ -176,13 +176,10 @@ class Game {
     }
     else if(playerTurn === 'White' && this.board.grid[startRow][startCol] === white && this.board.grid[startRow][startCol] !== black && this.board.grid[startRow][startCol] !== whiteKing && this.board.grid[startRow][startCol] !== blackKing && addTwentytwo == toWhere && this.board.grid[jumpAddElevenRow][jumpAddElevenColumn] == black){
       console.log('W2')
-      
       this.board.grid[endRow][endCol] = white
-      //this.board.grid[jumpAddElevenRow][jumpAddElevenColumn] = null
       this.board.grid[jumpAddElevenRow].splice([jumpAddElevenColumn], 1, null)
       this.board.checkers.pop()
       this.board.grid[startRow].splice([startCol], 1, null)
-      //this.board.grid[startRow][startCol] = null
       game.playerTurnTrack()
     }
     else if(playerTurn === 'White' && this.board.grid[startRow][startCol] === white && this.board.grid[startRow][startCol] !== black  && this.board.grid[startRow][startCol] !== whiteKing && this.board.grid[startRow][startCol] !== blackKing && addEighteen == toWhere && this.board.grid[jumpAddNineRow][jumpAddNineColumn] == black){
@@ -194,8 +191,8 @@ class Game {
       game.playerTurnTrack()
     }
       //Black Piece moves
-      else if(playerTurn === 'Black' && this.board.grid[startRow][startCol] === black && this.board.grid[startRow][startCol] !== white  && this.board.grid[startRow][startCol] !== whiteKing && this.board.grid[startRow][startCol] !== blackKing && minusNine == toWhere || minusEleven == toWhere && this.board.grid[endRow][endCol] === null) {
-      console.log('B1') 
+      else if(playerTurn === 'Black' && this.board.grid[startRow][startCol] === black && this.board.grid[startRow][startCol] !== white  && this.board.grid[startRow][startCol] !== whiteKing && this.board.grid[startRow][startCol] !== blackKing && (minusNine == toWhere || minusEleven == toWhere) && this.board.grid[endRow][endCol] === null) {
+      console.log('B1', this.board.grid[startRow][startCol], this.board.grid[startRow][startCol] === black) 
       this.board.grid[endRow][endCol] = black
       this.board.grid[startRow].splice([startCol], 1, null)
       game.playerTurnTrack()
@@ -215,121 +212,104 @@ class Game {
       this.board.checkers.pop()
       this.board.grid[startRow].splice([startCol], 1, null)
       game.playerTurnTrack()
-    }else{console.log('Please Make A Valid Move')}
+    }
 
 
-    //Make a Pice a KingPiece
-
-    if (this.board.grid[startRow][startCol] === white && toWhere == 70 || toWhere == 71 || toWhere == 72 || toWhere == 73 || toWhere == 74 || toWhere == 75 || toWhere == 76 ||toWhere == 77) {this.board.grid[endRow][endCol] = whiteKing}
-    else if (this.board.grid[startRow][startCol] === black && toWhere.split('') == [0,0] || toWhere.split('') == [0,1] || toWhere.split('') == [0,2] || toWhere.split('') == [0,3] || toWhere.split('') == [0,4] || toWhere.split('') == [0,5] || toWhere.split('') == [0,6] ||toWhere == [0,7]) {this.board.grid[endRow][endCol] = blackKing}
-
-    /*//King Movement ('White')
-    if (playerTurn === 'White' && this.board.grid[startRow][startCol] === 'WK' && addNine == toWhere || addEleven == toWhere && this.board.grid[endRow][endCol] === null) {
+    //King Movement ('White')
+    else if (playerTurn === 'White' && this.board.grid[startRow][startCol] === 'WK' &&(addNine == toWhere || addEleven == toWhere) && this.board.grid[endRow][endCol] === null) {
       console.log('KW1')
-     
       this.board.grid[endRow][endCol] = whiteKing
       this.board.grid[startRow][startCol] = null
       game.playerTurnTrack()
     }
-    if(playerTurn == 'White' && this.board.grid[startRow][startCol] === 'WK' && addTwentytwo == toWhere && this.board.grid[jumpAddElevenRow][jumpAddElevenColumn] == black || this.board.grid[jumpAddElevenRow][jumpAddElevenColumn] == blackKing){
+    else if(playerTurn == 'White' && this.board.grid[startRow][startCol] === 'WK' && addTwentytwo == toWhere && this.board.grid[jumpAddElevenRow][jumpAddElevenColumn] == black || this.board.grid[jumpAddElevenRow][jumpAddElevenColumn] == blackKing){
       console.log('KW2')
-     
       this.board.grid[endRow][endCol] = whiteKing
       this.board.grid[jumpAddElevenRow][jumpAddElevenColumn] = null
       this.board.checkers.pop()
       this.board.grid[startRow][startCol] = null
       game.playerTurnTrack()
     }
-    if(playerTurn === 'White' && this.board.grid[startRow][startCol] === 'WK' && addEighteen== toWhere && this.board.grid[jumpAddNineRow][jumpAddNineColumn] == black || this.board.grid[jumpAddNineRow][jumpAddNineColumn] == blackKing){
+    else if(playerTurn === 'White' && this.board.grid[startRow][startCol] === 'WK' && addEighteen== toWhere && this.board.grid[jumpAddNineRow][jumpAddNineColumn] == black || this.board.grid[jumpAddNineRow][jumpAddNineColumn] == blackKing){
       console.log('KW3')
-      
       this.board.grid[endRow][endCol] = whiteKing
       this.board.grid[jumpAddNineRow][jumpAddNineColumn] = null
       this.board.checkers.pop()
       this.board.grid[startRow][startCol] = null
       game.playerTurnTrack()
     }
-    if(playerTurn === 'White' && this.board.grid[startRow][startCol] === 'WK' && minusNine == toWhere || minusEleven == toWhere && this.board.grid[endRow][endCol] === null) {
+    else if(playerTurn === 'White' && this.board.grid[startRow][startCol] === 'WK' && (minusNine == toWhere || minusEleven == toWhere) && this.board.grid[endRow][endCol] === null) {
       console.log('KW4') 
-      
       this.board.grid[endRow][endCol] = whiteKing
       this.board.grid[startRow][startCol] = null
       game.playerTurnTrack()
     }
-    if(playerTurn === 'White' && this.board.grid[startRow][startCol] === 'WK' && minusTwentytwo == toWhere && this.board.grid[jumpMinusElevenRow][jumpMinusElevenColumn] == black || this.board.grid[jumpMinusElevenRow][jumpMinusElevenColumn] == blackKing){
+    else if(playerTurn === 'White' && this.board.grid[startRow][startCol] === 'WK' && minusTwentytwo == toWhere && this.board.grid[jumpMinusElevenRow][jumpMinusElevenColumn] == black || this.board.grid[jumpMinusElevenRow][jumpMinusElevenColumn] == blackKing){
       console.log('KW5')
-      
       this.board.grid[endRow][endCol] = whiteKing
       this.board.grid[jumpMinusElevenRow][jumpMinusElevenColumn] = null
       this.board.checkers.pop()
       this.board.grid[startRow][startCol] = null
       game.playerTurnTrack()
     }
-    if(playerTurn === 'White' && this.board.grid[startRow][startCol] === 'WK' && minusEighteen== toWhere && this.board.grid[jumpMinusNineRow][jumpMinusNineColumn] == black || this.board.grid[jumpMinusNineRow][jumpMinusNineColumn] == blackKing){
+    else if(playerTurn === 'White' && this.board.grid[startRow][startCol] === 'WK' && minusEighteen== toWhere && this.board.grid[jumpMinusNineRow][jumpMinusNineColumn] == black || this.board.grid[jumpMinusNineRow][jumpMinusNineColumn] == blackKing){
       console.log('KW6')
-      
       this.board.grid[endRow][endCol] = whiteKing
       this.board.grid[jumpMinusNineRow][jumpMinusNineColumn] = null
       this.board.checkers.pop()
       this.board.grid[startRow][startCol] = null
       game.playerTurnTrack()
     }
+
+
     //King Movement ('Black')
-    if (playerTurn === 'Black' && this.board.grid[startRow][startCol] === 'BK' && addNine == toWhere || addEleven == toWhere && this.board.grid[endRow][endCol] === null) {
+    else if (playerTurn === 'Black' && this.board.grid[startRow][startCol] === 'BK' && (addNine == toWhere || addEleven == toWhere) && this.board.grid[endRow][endCol] === null) {
       console.log('KB1')
-      
       this.board.grid[endRow][endCol] = blackKing
       this.board.grid[startRow][startCol] = null
       game.playerTurnTrack()
     }
-    if(playerTurn === 'Black' && this.board.grid[startRow][startCol] === 'BK' && addTwentytwo == toWhere && this.board.grid[jumpAddElevenRow][jumpAddElevenColumn] == white || this.board.grid[jumpAddElevenRow][jumpAddElevenColumn] == whiteKing){
+    else if(playerTurn === 'Black' && this.board.grid[startRow][startCol] === 'BK' && addTwentytwo == toWhere && this.board.grid[jumpAddElevenRow][jumpAddElevenColumn] == white || this.board.grid[jumpAddElevenRow][jumpAddElevenColumn] == whiteKing){
       console.log('KB2')
-      
       this.board.grid[endRow][endCol] = blackKing
       this.board.grid[jumpAddElevenRow][jumpAddElevenColumn] = null
       this.board.checkers.pop()
       this.board.grid[startRow][startCol] = null
       game.playerTurnTrack()
-    }if(playerTurn === 'Black' && this.board.grid[startRow][startCol] === 'BK' && addEighteen== toWhere && this.board.grid[jumpAddNineRow][jumpAddNineColumn] == white || this.board.grid[jumpAddNineRow][jumpAddNineColumn] == whiteKing){
+    }
+    else if(playerTurn === 'Black' && this.board.grid[startRow][startCol] === 'BK' && addEighteen== toWhere && this.board.grid[jumpAddNineRow][jumpAddNineColumn] == white || this.board.grid[jumpAddNineRow][jumpAddNineColumn] == whiteKing){
       console.log('KB3')
-      
       this.board.grid[endRow][endCol] = blackKing
       this.board.grid[jumpAddNineRow][jumpAddNineColumn] = null
       this.board.checkers.pop()
       this.board.grid[startRow][startCol] = null
       game.playerTurnTrack()
     }
-    if(playerTurn === 'Black' && this.board.grid[startRow][startCol] === 'BK' && minusNine == toWhere || minusEleven == toWhere && this.board.grid[endRow][endCol] === null) {
+    else if(playerTurn === 'Black' && this.board.grid[startRow][startCol] === 'BK' && (minusNine == toWhere || minusEleven == toWhere) && this.board.grid[endRow][endCol] === null) {
       console.log('KB4') 
-      
       this.board.grid[endRow][endCol] = blackKing
       this.board.grid[startRow][startCol] = null
       game.playerTurnTrack()
     }
-    if(playerTurn === 'Black' && this.board.grid[startRow][startCol] === 'BK' && minusTwentytwo == toWhere && this.board.grid[jumpMinusElevenRow][jumpMinusElevenColumn] == white || this.board.grid[jumpMinusElevenRow][jumpMinusElevenColumn] === whiteKing){
+    else if(playerTurn === 'Black' && this.board.grid[startRow][startCol] === 'BK' && minusTwentytwo == toWhere && this.board.grid[jumpMinusElevenRow][jumpMinusElevenColumn] == white || this.board.grid[jumpMinusElevenRow][jumpMinusElevenColumn] === whiteKing){
       console.log('KB5')
-      
       this.board.grid[endRow][endCol] = whiteKing
       this.board.grid[jumpMinusElevenRow][jumpMinusElevenColumn] = null
       this.board.checkers.pop()
       this.board.grid[startRow][startCol] = null
       game.playerTurnTrack()
     }
-    if(playerTurn ==='Black' && this.board.grid[startRow][startCol] === 'BK' && minusEighteen == toWhere && this.board.grid[jumpMinusNineRow][jumpMinusNineColumn] == white || this.board.grid[jumpMinusNineRow][jumpMinusNineColumn] == whiteKing){
+    else if(playerTurn ==='Black' && this.board.grid[startRow][startCol] === 'BK' && minusEighteen == toWhere && this.board.grid[jumpMinusNineRow][jumpMinusNineColumn] == white || this.board.grid[jumpMinusNineRow][jumpMinusNineColumn] == whiteKing){
       console.log('KB6')
-      
       this.board.grid[endRow][endCol] = blackKing
       this.board.grid[jumpMinusNineRow][jumpMinusNineColumn] = null
       this.board.checkers.pop()
       this.board.grid[startRow][startCol] = null
       game.playerTurnTrack()
-    }*/
-
-    
-}
-
-
-  
+    } else{
+      console.log('Please Make A Valid Move')
+    }
+  }
 }
 
 
