@@ -85,10 +85,11 @@ const arrOfPeople = [
       const li = document.createElement("li")
       const button = document.createElement("button")
       button.innerHTML = "Make Player"
-      button.addEventListener('click', function() {makePlayer(person.name, person.id, person.age)})
+      button.addEventListener('click', function() {makePlayer(person.name, person.id, person.age), listElement.removeChild(li)})
       li.appendChild(button)
       li.appendChild(document.createTextNode(person.name + " - " + person.skillSet))
       listElement.append(li)
+      
     })
   }
   
@@ -102,8 +103,8 @@ const arrOfPeople = [
       buttonRed.innerHTML = 'Assign to Red-Team'
 
       //add eventListeners for the Blue and Red Team Buttons:
-      buttonBlue.addEventListener('click', function() {assignBlue(name, id, age)})
-      buttonRed.addEventListener('click', function() {assignRed(name, id, age)})
+      buttonBlue.addEventListener('click', function() {assignBlue(name, id, age),container.removeChild(liPlayer)})
+      buttonRed.addEventListener('click', function() {assignRed(name, id, age),container.removeChild(liPlayer)})
         
       //Move the player to the List of Available Players 
       liPlayer.appendChild(buttonBlue)
@@ -119,6 +120,10 @@ const arrOfPeople = [
       let li = document.createElement('li')
       let buttonRemove = document.createElement('button')
       buttonRemove.innerHTML = 'Remove from Blue-Team'
+       
+      //Create a button event that moves the selected player from the assigned team back to available players.
+      buttonRemove.addEventListener('click', function() {makePlayer(name, id, age),container.removeChild(li)})
+        
       li.appendChild(buttonRemove)
       li.appendChild(document.createTextNode(name + " - " +"ID #: " + id + " - " + "Player Age: " + age))
       container.append(li)
@@ -130,7 +135,13 @@ const arrOfPeople = [
     let li = document.createElement('li')
     let buttonRemove = document.createElement('button')
     buttonRemove.innerHTML = 'Remove from Red-Team'
+
+    //Create a button event that moves the selected player from the assigned team back to available players.
+    buttonRemove.addEventListener('click', function() {makePlayer(name, id, age),container.removeChild(li)})
+
     li.appendChild(buttonRemove)
     li.appendChild(document.createTextNode(name + " - " +"ID #: " + id + " - " + "Player Age: " + age))
     container.append(li)
   }
+
+  
