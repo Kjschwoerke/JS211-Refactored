@@ -113,7 +113,7 @@ const arrOfPeople = [
     console.log(listOfPlayers)
     console.log(`li ${id} was clicked!`)
   }
-
+        //Assign a player to the Blue-Team
   const assignBlue = (name, id, age) => {
       let container = document.body.querySelector('#blue')
       let li = document.createElement('li')
@@ -124,7 +124,7 @@ const arrOfPeople = [
       container.append(li)
   }
 
-
+        //Assign a player to the Red-Team
   const assignRed = (name, id, age) => {
     let container = document.body.querySelector('#red')
     let li = document.createElement('li')
