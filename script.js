@@ -70,8 +70,6 @@ const arrOfPeople = [
     constructor(mascot, teamColor){
 
       super(Player)
-
-
         this.mascot = mascot
         this.teamColor = teamColor
     }
