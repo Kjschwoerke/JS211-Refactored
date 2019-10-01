@@ -56,8 +56,9 @@ const arrOfPeople = [
   
 
   //Create Class for Player and also extend the Player class with the blue and red team assignments
-  class player {
-    constructor(canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience){
+  class Player {
+    constructor(person, canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience){
+        this.person = person
         this.throw = canThrowBall
         this.dodge = canDodgeBall
         this.paid = hasPaid
@@ -65,14 +66,16 @@ const arrOfPeople = [
         this.experience = yearsExperience
     }
   }
-  class blueTeammate extends player {
+  class BlueTeammate extends Player {
     constructor(mascot, teamColor){
+      super(player)
         this.mascot = mascot
         this.teamColor = teamColor
     }
   }
-  class redTeammate extends player {
+  class RedTeammate extends Player {
     constructor(mascot, teamColor){
+      super(player)
         this.mascot = mascot
         this.teamColor = teamColor
   }
@@ -84,26 +87,29 @@ const arrOfPeople = [
     arrOfPeople.map(person => {
       const li = document.createElement("li")
       const button = document.createElement("button")
+      
       button.innerHTML = "Make Player"
-      button.addEventListener('click', function() {makePlayer(person.name, person.id, person.age), listElement.removeChild(li)})
+      button.addEventListener('click', function() {makePlayer(person, person.name, person.id, person.age), listElement.removeChild(li)})
       li.appendChild(button)
       li.appendChild(document.createTextNode(person.name + " - " + person.skillSet))
       listElement.append(li)
-      
+     
     })
   }
   
-  const makePlayer = (name, id, age) => {
+  const makePlayer = (person, name, id, age) => {
       //create variables to be used inside the makePlayer function
       let container = document.body.querySelector('#players')
       let liPlayer = document.createElement("li")
+      let indexPerson=arrOfPeople.indexOf(person)
+      let player = new Player(person, true, true, true, true, true)
       const buttonBlue = document.createElement("button")
       const buttonRed = document.createElement("button")
       buttonBlue.innerHTML = 'Assign to Blue-Team'
       buttonRed.innerHTML = 'Assign to Red-Team'
 
       //add eventListeners for the Blue and Red Team Buttons:
-      buttonBlue.addEventListener('click', function() {assignBlue(name, id, age),container.removeChild(liPlayer)})
+      buttonBlue.addEventListener('click', function() {assignBlue(person, name, id, age),container.removeChild(liPlayer)})
       buttonRed.addEventListener('click', function() {assignRed(name, id, age),container.removeChild(liPlayer)})
         
       //Move the player to the List of Available Players 
@@ -111,18 +117,52 @@ const arrOfPeople = [
       liPlayer.appendChild(buttonRed)
       liPlayer.appendChild(document.createTextNode(name + " - " +"ID #: " + id + " - " + "Player Age: " + age))
       container.append(liPlayer)
+      listOfPlayers.push(player)
+      arrOfPeople.splice(indexPerson, 1)
+    console.log(arrOfPeople)
     console.log(listOfPlayers)
+    console.log(indexPerson)
+    console.log(name, id, age)
     console.log(`li ${id} was clicked!`)
   }
+
+  /*const remakePlayer = (person, name, id, age) => {
+    //create variables to be used inside the makePlayer function
+    let container = document.body.querySelector('#players')
+    let liPlayer = document.createElement("li")
+    let indexPerson=arrOfPeople.indexOf(person)
+    const buttonBlue = document.createElement("button")
+    const buttonRed = document.createElement("button")
+    buttonBlue.innerHTML = 'Assign to Blue-Team'
+    buttonRed.innerHTML = 'Assign to Red-Team'
+
+    //add eventListeners for the Blue and Red Team Buttons:
+    buttonBlue.addEventListener('click', function() {assignBlue(person, name, id, age),container.removeChild(liPlayer)})
+    buttonRed.addEventListener('click', function() {assignRed(name, id, age),container.removeChild(liPlayer)})
+      
+    //Move the player to the List of Available Players 
+    liPlayer.appendChild(buttonBlue)
+    liPlayer.appendChild(buttonRed)
+    liPlayer.appendChild(document.createTextNode(name + " - " +"ID #: " + id + " - " + "Player Age: " + age))
+    container.append(liPlayer)
+    listOfPlayers.push(player)
+    arrOfPeople.splice(indexPerson, 1)
+  console.log(arrOfPeople)
+  console.log(listOfPlayers)
+  console.log(indexPerson)
+ 
+  console.log(`li ${id} was clicked!`)
+}*/
+
         //Assign a player to the Blue-Team
-  const assignBlue = (name, id, age) => {
+  const assignBlue = (person, name, id, age) => {
       let container = document.body.querySelector('#blue')
       let li = document.createElement('li')
       let buttonRemove = document.createElement('button')
       buttonRemove.innerHTML = 'Remove from Blue-Team'
        
       //Create a button event that moves the selected player from the assigned team back to available players.
-      buttonRemove.addEventListener('click', function() {makePlayer(name, id, age),container.removeChild(li)})
+      buttonRemove.addEventListener('click', function() {makePlayer(person, name, id, age),container.removeChild(li)})
         
       li.appendChild(buttonRemove)
       li.appendChild(document.createTextNode(name + " - " +"ID #: " + id + " - " + "Player Age: " + age))
