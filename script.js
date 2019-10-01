@@ -56,8 +56,9 @@ const arrOfPeople = [
   
 
   //Create Class for Player and also extend the Player class with the blue and red team assignments
-  class player {
-    constructor(canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience){
+  class Player {
+    constructor(person, canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience){
+        this.person = person
         this.throw = canThrowBall
         this.dodge = canDodgeBall
         this.paid = hasPaid
@@ -65,83 +66,116 @@ const arrOfPeople = [
         this.experience = yearsExperience
     }
   }
-  class blueTeammate extends player {
+  class BlueTeammate extends Player {
     constructor(mascot, teamColor){
+      super(Player)
         this.mascot = mascot
         this.teamColor = teamColor
     }
   }
-  class redTeammate extends player {
+  class RedTeammate extends Player {
     constructor(mascot, teamColor){
+      super(Player)
         this.mascot = mascot
         this.teamColor = teamColor
   }
 }
-
+let tom = new RedTeammate ('Dog', 'Green')
+console.log(tom)
 
   const listPeopleChoices = () => {
     const listElement = document.getElementById('people')
     arrOfPeople.map(person => {
       const li = document.createElement("li")
       const button = document.createElement("button")
+      
       button.innerHTML = "Make Player"
-      button.addEventListener('click', function() {makePlayer(person.name, person.id, person.age), listElement.removeChild(li)})
+      button.addEventListener('click', function() {makePlayer(person, person.name, person.id, person.age), listElement.removeChild(li)})
       li.appendChild(button)
       li.appendChild(document.createTextNode(person.name + " - " + person.skillSet))
       listElement.append(li)
-      
+     
     })
   }
   
-  const makePlayer = (name, id, age) => {
+  const makePlayer = (person) => {
       //create variables to be used inside the makePlayer function
       let container = document.body.querySelector('#players')
       let liPlayer = document.createElement("li")
+      let indexPerson=arrOfPeople.indexOf(person)
+      let indexRed = redTeam.indexOf(person)
+      let indexBlue = blueTeam.indexOf(person)
+      let player = new Player(person)
       const buttonBlue = document.createElement("button")
       const buttonRed = document.createElement("button")
       buttonBlue.innerHTML = 'Assign to Blue-Team'
       buttonRed.innerHTML = 'Assign to Red-Team'
 
       //add eventListeners for the Blue and Red Team Buttons:
-      buttonBlue.addEventListener('click', function() {assignBlue(name, id, age),container.removeChild(liPlayer)})
-      buttonRed.addEventListener('click', function() {assignRed(name, id, age),container.removeChild(liPlayer)})
+      buttonBlue.addEventListener('click', function() {assignBlue(person),container.removeChild(liPlayer)})
+      buttonRed.addEventListener('click', function() {assignRed(person),container.removeChild(liPlayer)})
         
       //Move the player to the List of Available Players 
       liPlayer.appendChild(buttonBlue)
       liPlayer.appendChild(buttonRed)
-      liPlayer.appendChild(document.createTextNode(name + " - " +"ID #: " + id + " - " + "Player Age: " + age))
+      liPlayer.appendChild(document.createTextNode(person.name + " - " +"ID #: " + person.id + " - " + "Player Age: " + person.age))
       container.append(liPlayer)
-    console.log(listOfPlayers)
-    console.log(`li ${id} was clicked!`)
+      
+      listOfPlayers.push(player)
+      arrOfPeople.splice(indexPerson, 1)
+      blueTeam.splice(indexBlue, 1)
+      redTeam.splice(indexRed, 1)
+
+    //console.log(arrOfPeople)
+    //console.log(listOfPlayers)
+    //console.log(indexPerson)
+    //console.log(name, id, age)
+    //console.log(`li ${id} was clicked!`)
   }
+
         //Assign a player to the Blue-Team
-  const assignBlue = (name, id, age) => {
+  const assignBlue = (person) => {
       let container = document.body.querySelector('#blue')
       let li = document.createElement('li')
+      let bluePlayer = new BlueTeammate('dolphin', 'Blue')
+      let indexPerson=listOfPlayers.indexOf(person)
       let buttonRemove = document.createElement('button')
       buttonRemove.innerHTML = 'Remove from Blue-Team'
        
       //Create a button event that moves the selected player from the assigned team back to available players.
-      buttonRemove.addEventListener('click', function() {makePlayer(name, id, age),container.removeChild(li)})
-        
+      buttonRemove.addEventListener('click', function() {makePlayer(person),container.removeChild(li)})
+      
+      blueTeam.push(bluePlayer)
+      listOfPlayers.splice(indexPerson, 1)
+      
       li.appendChild(buttonRemove)
-      li.appendChild(document.createTextNode(name + " - " +"ID #: " + id + " - " + "Player Age: " + age))
+      li.appendChild(document.createTextNode(person.name + " - " +"Team Mascot: " + person.mascot + " - " + "Player Color: " + person.color))
       container.append(li)
+
+      console.log(blueTeam)
+      console.log(bluePlayer)
+      console.log(listOfPlayers)
   }
 
-        //Assign a player to the Red-Team
-  const assignRed = (name, id, age) => {
+  const assignRed = (person) => {
     let container = document.body.querySelector('#red')
     let li = document.createElement('li')
+    let redPlayer = new RedTeammate('hawk', 'Red')
+    let indexPerson=listOfPlayers.indexOf(person)
     let buttonRemove = document.createElement('button')
     buttonRemove.innerHTML = 'Remove from Red-Team'
-
+     
     //Create a button event that moves the selected player from the assigned team back to available players.
-    buttonRemove.addEventListener('click', function() {makePlayer(name, id, age),container.removeChild(li)})
-
+    buttonRemove.addEventListener('click', function() {makePlayer(person),container.removeChild(li)})
+    
+    redTeam.push(redPlayer)
+    listOfPlayers.splice(indexPerson, 1)
+    
     li.appendChild(buttonRemove)
-    li.appendChild(document.createTextNode(name + " - " +"ID #: " + id + " - " + "Player Age: " + age))
+    li.appendChild(document.createTextNode("Player Name: " + person.name + " - " +"Team Mascot: " + person.mascot + " - " + "Player Color: " + person.color))
     container.append(li)
-  }
 
-  
+    console.log(redTeam)
+    console.log(redPlayer)
+    console.log(listOfPlayers)
+}
