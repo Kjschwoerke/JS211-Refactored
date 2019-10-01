@@ -68,7 +68,10 @@ const arrOfPeople = [
   }
   class BlueTeammate extends Player {
     constructor(mascot, teamColor){
+
       super(Player)
+
+
         this.mascot = mascot
         this.teamColor = teamColor
     }
