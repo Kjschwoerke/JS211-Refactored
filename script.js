@@ -81,8 +81,7 @@ const arrOfPeople = [
         this.teamColor = teamColor
   }
 }
-let tom = new RedTeammate ('Dog', 'Green')
-console.log(tom)
+
 
   const listPeopleChoices = () => {
     const listElement = document.getElementById('people')
@@ -106,15 +105,15 @@ console.log(tom)
       let indexPerson=arrOfPeople.indexOf(person)
       let indexRed = redTeam.indexOf(person)
       let indexBlue = blueTeam.indexOf(person)
-      let player = new Player(person)
+      let player = new Player(person, 'Yes', 'Yes', 'Paid', 'Good', '1 year')
       const buttonBlue = document.createElement("button")
       const buttonRed = document.createElement("button")
       buttonBlue.innerHTML = 'Assign to Blue-Team'
       buttonRed.innerHTML = 'Assign to Red-Team'
 
       //add eventListeners for the Blue and Red Team Buttons:
-      buttonBlue.addEventListener('click', function() {assignBlue(person),container.removeChild(liPlayer)})
-      buttonRed.addEventListener('click', function() {assignRed(person),container.removeChild(liPlayer)})
+      buttonBlue.addEventListener('click', function() {assignBlue(person, player),container.removeChild(liPlayer)})
+      buttonRed.addEventListener('click', function() {assignRed(person, player),container.removeChild(liPlayer)})
         
       //Move the player to the List of Available Players 
       liPlayer.appendChild(buttonBlue)
@@ -127,7 +126,7 @@ console.log(tom)
       blueTeam.splice(indexBlue, 1)
       redTeam.splice(indexRed, 1)
 
-    //console.log(arrOfPeople)
+    console.log(player)
     //console.log(listOfPlayers)
     //console.log(indexPerson)
     //console.log(name, id, age)
@@ -135,10 +134,10 @@ console.log(tom)
   }
 
         //Assign a player to the Blue-Team
-  const assignBlue = (person) => {
+  const assignBlue = (person, player) => {
       let container = document.body.querySelector('#blue')
       let li = document.createElement('li')
-      let bluePlayer = new BlueTeammate('dolphin', 'Blue')
+      let bluePlayer = new BlueTeammate('Dolphin', 'Blue')
       let indexPerson=listOfPlayers.indexOf(person)
       let buttonRemove = document.createElement('button')
       buttonRemove.innerHTML = 'Remove from Blue-Team'
@@ -150,7 +149,7 @@ console.log(tom)
       listOfPlayers.splice(indexPerson, 1)
       
       li.appendChild(buttonRemove)
-      li.appendChild(document.createTextNode(person.name + " - " +"Team Mascot: " + person.mascot + " - " + "Player Color: " + person.color))
+      li.appendChild(document.createTextNode("Player Name: " + person.name + " - " +"Team Mascot: " + bluePlayer.mascot + " - " + "Player Color: " + bluePlayer.teamColor))
       container.append(li)
 
       console.log(blueTeam)
@@ -158,10 +157,10 @@ console.log(tom)
       console.log(listOfPlayers)
   }
 
-  const assignRed = (person) => {
+  const assignRed = (person, player) => {
     let container = document.body.querySelector('#red')
     let li = document.createElement('li')
-    let redPlayer = new RedTeammate('hawk', 'Red')
+    let redPlayer = new RedTeammate('Hawk', 'Red')
     let indexPerson=listOfPlayers.indexOf(person)
     let buttonRemove = document.createElement('button')
     buttonRemove.innerHTML = 'Remove from Red-Team'
@@ -173,7 +172,7 @@ console.log(tom)
     listOfPlayers.splice(indexPerson, 1)
     
     li.appendChild(buttonRemove)
-    li.appendChild(document.createTextNode("Player Name: " + person.name + " - " +"Team Mascot: " + person.mascot + " - " + "Player Color: " + person.color))
+    li.appendChild(document.createTextNode("Player Name: " + person.name + " - " +"Team Mascot: " + redPlayer.mascot + " - " + "Player Color: " + redPlayer.teamColor))
     container.append(li)
 
     console.log(redTeam)
