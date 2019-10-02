@@ -84,11 +84,10 @@ const arrOfPeople = [
 
 
   const listPeopleChoices = () => {
-    const listElement = document.getElementById('people')
+    let listElement = document.getElementById('people')
     arrOfPeople.map(person => {
-      const li = document.createElement("li")
-      const button = document.createElement("button")
-      
+      let li = document.createElement("li")
+      let button = document.createElement("button")
       button.innerHTML = "Make Player"
       button.addEventListener('click', function() {makePlayer(person, person.name, person.id, person.age), listElement.removeChild(li)})
       li.appendChild(button)
@@ -96,6 +95,22 @@ const arrOfPeople = [
       listElement.append(li)
      
     })
+  }
+
+  const removePlayer = (person) => {
+      let listElement = document.getElementById('people')
+      let li = document.createElement("li")
+      let button = document.createElement("button")
+      let indexPerson=listOfPlayers.indexOf(person)
+      button.innerHTML = "Make Player"
+      button.addEventListener('click', function() {makePlayer(person, person.name, person.id, person.age), listElement.removeChild(li)})
+      li.appendChild(button)
+      li.appendChild(document.createTextNode(person.name + " - " + person.skillSet))
+      listElement.append(li)
+
+      listOfPlayers.push(person)
+      arrOfPeople.splice(indexPerson, 1)
+      
   }
   
   const makePlayer = (person) => {
@@ -106,18 +121,25 @@ const arrOfPeople = [
       let indexRed = redTeam.indexOf(person)
       let indexBlue = blueTeam.indexOf(person)
       let player = new Player(person, 'Yes', 'Yes', 'Paid', 'Good', '1 year')
+      
       const buttonBlue = document.createElement("button")
       buttonBlue.setAttribute('id', 'buttonBlue')
       const buttonRed = document.createElement("button")
       buttonRed.setAttribute('id', 'buttonRed')
       buttonBlue.innerHTML = 'Assign to Blue-Team'
       buttonRed.innerHTML = 'Assign to Red-Team'
+      // Add a remove button to move Players back to the People Array
+      const buttonRemove = document.createElement("button")
+      buttonRemove.innerHTML = "Remove Player"
+      //Add eventListeners for the remove button
+      buttonRemove.addEventListener('click', function() {removePlayer(person, player),container.removeChild(liPlayer)})
 
       //add eventListeners for the Blue and Red Team Buttons:
       buttonBlue.addEventListener('click', function() {assignBlue(person, player),container.removeChild(liPlayer)})
       buttonRed.addEventListener('click', function() {assignRed(person, player),container.removeChild(liPlayer)})
         
       //Move the player to the List of Available Players 
+      liPlayer.appendChild(buttonRemove)
       liPlayer.appendChild(buttonBlue)
       liPlayer.appendChild(buttonRed)
       liPlayer.appendChild(document.createTextNode(person.name + " - " +"ID #: " + person.id + " - " + "Player Age: " + person.age))
@@ -127,12 +149,6 @@ const arrOfPeople = [
       arrOfPeople.splice(indexPerson, 1)
       blueTeam.splice(indexBlue, 1)
       redTeam.splice(indexRed, 1)
-
-    console.log(player)
-    //console.log(listOfPlayers)
-    //console.log(indexPerson)
-    //console.log(name, id, age)
-    //console.log(`li ${id} was clicked!`)
   }
 
         //Assign a player to the Blue-Team
@@ -153,12 +169,8 @@ const arrOfPeople = [
       li.appendChild(buttonRemove)
       li.appendChild(document.createTextNode("Player Name: " + person.name + " - " +"Team Mascot: " + bluePlayer.mascot + " - " + "Player Color: " + bluePlayer.teamColor))
       container.append(li)
-
-      console.log(blueTeam)
-      console.log(bluePlayer)
-      console.log(listOfPlayers)
   }
-
+    //Assign a player to the red team
   const assignRed = (person, player) => {
     let container = document.body.querySelector('#red')
     let li = document.createElement('li')
@@ -176,8 +188,4 @@ const arrOfPeople = [
     li.appendChild(buttonRemove)
     li.appendChild(document.createTextNode("Player Name: " + person.name + " - " +"Team Mascot: " + redPlayer.mascot + " - " + "Player Color: " + redPlayer.teamColor))
     container.append(li)
-
-    console.log(redTeam)
-    console.log(redPlayer)
-    console.log(listOfPlayers)
 }
