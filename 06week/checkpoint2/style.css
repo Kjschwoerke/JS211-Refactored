@@ -1,0 +1,289 @@
+* {
+    background: #ffff;
+}
+
+/* List of People CSS */
+
+#peopleContainer {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 5em 1fr 5em;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 95%;
+    height: auto;
+    margin: .5em auto;
+    border: black solid 1px;
+    background: lightgray;
+}
+
+#peopleContainer h4 {
+    grid-row: 1/2;
+    text-align: center;
+    font-size: 2em; 
+    background: lightgray; 
+}
+
+#people {
+    grid-row: 2/3;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: space-around;
+    justify-content: center;
+    list-style: none;
+    background: lightgray;
+    padding-left: 0;
+}
+
+#people li{
+    width: 250px;
+    height: 100px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    border: black solid 1px;
+    padding: .35em .5em;
+    margin: .25em 1em ;
+}
+
+#people li button {
+    height: 3em;
+    font-size: 1em;
+    margin: 1em;
+    font-weight: 700;
+    background: lightgrey;
+    border-radius: 10px;
+    border: none;
+}
+
+#people li button:hover {
+    background: #ffff;
+    border: lightgrey solid 2px;
+}
+
+#listPeopleButton {
+    grid-row: 3/4;
+    text-align: center;
+    font-size: 1em; 
+    height: 3em;
+    width: 9em;
+    margin: auto auto;
+    font-weight: 600;
+}
+
+/* Player List CSS */
+
+#playersContainer {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 5em 1fr 5em;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 95%;
+    height: auto;
+    margin: .5em auto;
+    border: black solid 1px;
+    background: lightgray;
+}
+
+#playersContainer h4 {
+    grid-row: 1/2;
+    text-align: center;
+    font-size: 2em; 
+    background: lightgray; 
+}
+
+#players {
+    grid-row: 2/3;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: space-around;
+    justify-content: center;
+    list-style: none;
+    background: lightgray;
+    padding-left: 0;
+}
+
+#players li{
+    width: 300px;
+    height: 100px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    border: black solid 1px;
+    padding: .35em .5em;
+    margin: .25em 1em ;
+}
+
+#players li #buttonBlue {
+    height: 3em;
+    font-size: 1em;
+    margin: .25em;
+    font-weight: 700;
+    background: lightskyblue;
+    border-radius: 10px;
+    border: none;
+    padding: .375em;
+}
+#players li #buttonBlue:hover {
+    background: #ffff;
+    border-radius: 10px;
+    border: lightskyblue solid 1px;
+}
+
+#players li #buttonRed {
+    height: 3em;
+    font-size: 1em;
+    margin: .25em;
+    font-weight: 700;
+    background: red;
+    border-radius: 10px;
+    border: none;
+    padding: .375em;
+}
+
+#players li #buttonRed:hover {
+    background: #ffff;
+    border-radius: 10px;
+    border: red solid 1px;
+}
+
+#players li button:hover {
+    background: #ffff;
+    border: lightgrey solid 2px;
+}
+
+/*Blue Team CSS*/
+
+#blueContainer {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 5em 1fr 5em;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 95%;
+    height: auto;
+    margin: .5em auto;
+    border: black solid 1px;
+    background: lightskyblue;
+}
+
+#blueContainer h4 {
+    grid-row: 1/2;
+    text-align: center;
+    font-size: 2em; 
+    background: lightskyblue; 
+}
+
+#blue {
+    grid-row: 2/3;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: space-around;
+    justify-content: center;
+    list-style: none;
+    background: lightskyblue;
+    padding-left: 0;
+}
+
+#blue li{
+    width: 300px;
+    height: 100px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    border: black solid 1px;
+    padding: .35em .5em;
+    margin: .25em 1em ;
+}
+
+#blue li button {
+    height: 3em;
+    font-size: 1em;
+    margin: 1em;
+    font-weight: 700;
+    background: lightgrey;
+    border-radius: 10px;
+    border: none;
+}
+
+#blue li button:hover {
+    background: #ffff;
+    border: lightgrey solid 2px;
+}
+
+
+/* Red Team CSS */
+
+#redContainer {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 5em 1fr 5em;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 95%;
+    height: auto;
+    margin: .5em auto;
+    border: black solid 1px;
+    background: red;
+}
+
+#redContainer h4 {
+    grid-row: 1/2;
+    text-align: center;
+    font-size: 2em; 
+    background: red; 
+}
+
+#red {
+    grid-row: 2/3;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: space-around;
+    justify-content: center;
+    list-style: none;
+    background: red;
+    padding-left: 0;
+}
+
+#red li{
+    width: 300px;
+    height: 100px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    border: black solid 1px;
+    padding: .35em .5em;
+    margin: .25em 1em ;
+}
+
+#red li button {
+    height: 3em;
+    font-size: 1em;
+    margin: 1em;
+    font-weight: 700;
+    background: lightgrey;
+    border-radius: 10px;
+    border: none;
+}
+
+#red li button:hover {
+    background: #ffff;
+    border: lightgrey solid 2px;
+}
