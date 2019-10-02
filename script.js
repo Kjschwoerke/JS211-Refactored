@@ -107,7 +107,9 @@ const arrOfPeople = [
       let indexBlue = blueTeam.indexOf(person)
       let player = new Player(person, 'Yes', 'Yes', 'Paid', 'Good', '1 year')
       const buttonBlue = document.createElement("button")
+      buttonBlue.setAttribute('id', 'buttonBlue')
       const buttonRed = document.createElement("button")
+      buttonRed.setAttribute('id', 'buttonRed')
       buttonBlue.innerHTML = 'Assign to Blue-Team'
       buttonRed.innerHTML = 'Assign to Red-Team'
 
