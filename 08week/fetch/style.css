@@ -38,6 +38,11 @@ input {
     padding:.25em;
 }
 
+.coordinates {
+    font-size: .75em;
+    text-align: center;
+}
+
 .buttonContainer {
     display: flex;
     flex-direction: row;
