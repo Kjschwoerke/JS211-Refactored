@@ -22,24 +22,35 @@ console.log(api)
 //_______________________________
 const weatherArr = [];
 
+function weatherDataDump(){
 
+  let weatherData;
+fetch(api)
+  .then(res => res.json())
+  .then(data => {
+    weatherData = data
+    weatherArr.push(weatherData.currently.temperature)
+    weatherArr.push(weatherData.minutely.summary)
+    weatherArr.push(weatherData.minutely.icon)
+    weatherArr.push(weatherData.hourly.summary)
+    weatherArr.push(weatherData.daily.summary)
+  })
 
-var request = new XMLHttpRequest();
+}
+weatherDataDump()
+
+/*  var request = new XMLHttpRequest();
 request.open('GET', api);
 request.responseType = 'json';
 request.send();
 
 //Calls and loads the API from darksky
 request.onload = function() {
-  const weatherData = request.response;
-  weatherArr.push(weatherData.currently.temperature)
-  weatherArr.push(weatherData.minutely.summary)
-  weatherArr.push(weatherData.minutely.icon)
-  weatherArr.push(weatherData.hourly.summary)
-  weatherArr.push(weatherData.daily.summary)
+  const weatherData = request.response;*/
+  
     
   //console.log(weatherArr)
-}
+//}
 
 function displayWeather(weatherArr){
     let node = document.createElement('li')
