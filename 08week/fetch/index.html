@@ -1,16 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fetch</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+  <link rel="stylesheet" href="./style.css">
+  
+  <title>WEATHERtrac</title>
 </head>
 <body>
-  <div id="fetch"></div>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.23.1/babel.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.5.0/react.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.5.0/react-dom.js"></script>
-  <script type="text/babel" src="./script.js"></script>
+
+  <!--WEATHERtrac Title/Logo-->
+<header id = 'titleContainer'>
+  <h1>WEATHER <span><i class="fas fa-bolt"></i></span> trac</h1>
+</header>
+
+<!--Text Input for location Info-->
+<div class="textInput">
+  <form>
+    <lable>Type in your latitude:</lable><br>
+    <input type="text" name="latitude" id="latitude" placeholder = '30.2672'>
+    <br><span class = 'coordinates'>Input this for ATX:  30.2672</span>
+</form>
+<form>
+    <lable>Type in your longitude:</lable><br>
+    <input type="text" name="longitude" id="longitude" placeholder = '-97.7431'>
+    <br><span class = 'coordinates'>Input this for ATX:  -97.7431</span>
+</form>
+
+
+</div>
+
+<div class="buttonContainer">
+<button onclick = "displayWeather(weatherArr)" id = 'weatherButton'>Get Current Weather</button>
+</div>
+
+<!-- Display the weather for yesterday, today and tomorrow -->
+<div class="flexContainer">
+  <article id = 'currentWeatherContainer'><div class="title">Today</div>
+  <div id = 'currentWeather'>
+  </div>
+  
+  </article>
+</div>
+
+  <div id = 'testArea'>
+    <ul id = 'testAreaUl'>
+
+    </ul>
+  </div>
+
+  <script src="./javaScript.js"></script>
 </body>
 </html>
